@@ -37,7 +37,6 @@ const App: React.FC = () => {
       });
     };
 
-    // Initial setup
     setup();
 
     // Recalculate positions on window resize
