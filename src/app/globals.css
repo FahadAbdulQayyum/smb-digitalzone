@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+h1 {
+  font-family: "Inter", sans-serif; /* Apply the custom font to headings */
+}
+
+.border-colorful-btn {
+  color: white;
+  font-weight: bold;
+  padding: 10px 8px 10px 8px;
+  margin: 0 10px;
+
+            
+  background: radial-gradient(circle at 100% 100%, #19161C 0, #19161C 3px, transparent 3px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #19161C 0, #19161C 3px, transparent 3px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #19161C 0, #19161C 3px, transparent 3px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #19161C 0, #19161C 3px, transparent 3px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#19161C, #19161C) 50% 50%/calc(100% - 10px) calc(100% - 16px) no-repeat,
+            linear-gradient(#19161C, #19161C) 50% 50%/calc(100% - 16px) calc(100% - 10px) no-repeat,
+            conic-gradient(from 105deg, #18C8FF 0%, #933FFE 100%);            
+
+  border-radius: 8px;
+  padding: 9px;
+  box-sizing: border-box;
+
+}
+
+.bg-colorful-btn {
+  color: white;
+  font-weight: bold;
+  padding: 10px 8px 10px 8px;
+  margin: 0 10px;
+  background: linear-gradient(60deg, #b0219d 0%, #933FFE 2%, #4c9cfc 70%, #4c9cfc 60%);
+  border-radius: 8px;
+}
+.remove-mrgn {
+  margin: 0 0 !important;
+}
