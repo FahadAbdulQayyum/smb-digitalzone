@@ -31,13 +31,6 @@ const ReportsOverview: React.FC<AnalyticsInfoReportsProps> = ({
   // Doughnut Chart Data
   const usersByDeviceData = {
     labels: analyticsDeviceData ? analyticsDeviceData[0].labels : ["Dummy", "Pagal", "Tiwar", "Kuja", "letSee"],
-    // datasets: [
-    //   {
-    //     data: [4100, 643, 1000, 400],
-    //     backgroundColor: ['#CB3CFF', '#00C2FF', '#0038FF', '#343B4F40'],
-    //     hoverOffset: 4,
-    //   },
-    // ],
     datasets: analyticsDeviceData ? analyticsDeviceData[0].datasets : 
     [
         {
