@@ -21,6 +21,7 @@ export interface IRecentSubscriber {
 }
 
 export interface IRevenueData {
+  _id: string;
   month: string;
   // revenue: number;
   revenue: string;
@@ -72,7 +73,14 @@ const DashboardComponent = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const data = await response.json();
+        let data = await response.json();
+        data = {
+          ...data,
+          revenue_data: data.revenue_data.map((item: IRevenueData) => ({
+            ...item,
+            revenue: parseFloat(item.revenue), // Convert revenue from string to number
+          })),
+        }
         console.log('...Analytics data:...', data); // Log the fetched analytics data
         setAnalyticsInfo(data); // Store analytics info in state
       } catch (error) {
@@ -105,10 +113,18 @@ const DashboardComponent = () => {
 
         {/* Revenue Chart */}
         <div className="bg-boxColor p-4 rounded shadow-md mt-4">
-          <RevenueChart 
+          {/* <RevenueChart 
             analyticsTotalRevenue={analyticsInfo ? formatNumber(analyticsInfo.total_revenue) : "0"} 
-            analyticsRevenueData={analyticsInfo ? analyticsInfo.revenue_data : [{month: 'Jan', revenue: '1000'}]}
+            analyticsRevenueData={analyticsInfo ? analyticsInfo.revenue_data : [{_id: '1', month: 'Jan', revenue: '1000'}]}
+          /> */}
+           {analyticsInfo ? (
+          <RevenueChart
+            analyticsTotalRevenue={analyticsInfo ? formatNumber(analyticsInfo.total_revenue) : "0"}
+            analyticsRevenueData={analyticsInfo!.revenue_data}
           />
+        ) : (
+          <p>Loading...</p>
+        )}
         </div>
 
         {/* Reports Overview */}

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import User from '@/utils/models/User';
 import Analytics from '@/utils/models/Analytic';
 import { connectToDatabase } from '@/utils/db';
+import { IRevenueData } from '@/components/Dashboard';
 
 // Handle GET requests
 export async function POST(request: Request) {
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: 'User not found' }, { status: 400 });
     }
 
-    const analytics = await Analytics.findOne({ user_id: user._id.toString() });
+    let analytics = await Analytics.findOne({ user_id: user._id.toString() });
 
     return NextResponse.json({ ...analytics._doc }, { status: 200 });
   } catch (error) {

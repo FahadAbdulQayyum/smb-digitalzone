@@ -22,12 +22,16 @@ const recentSubscriberSchema = new Schema({
 
 // Define the RecentSubscriber sub-schema
 const IRevenueDataSchema = new Schema({
+  // _id: {
+  //   type: String,
+  //   required: true,
+  // },
   month: {
     type: String,
     required: true,
   },
   revenue: {
-    type: String,
+    type: Number,
     required: true,
   },
 });

@@ -1,5 +1,5 @@
 import Button from '@/app/Screen/Button';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   LineChart,
   Line,
@@ -49,6 +49,10 @@ const RevenueChart: React.FC<RevenueChartProps> = ({
     { month: 'Nov', revenue: 27000 },
     { month: 'Dec', revenue: 29000 },
   ];
+
+  useEffect(() => {
+    console.log('...Analytics Revenue Data:...', analyticsRevenueData);
+  }, [])
 
   // Custom tooltip content with type annotations
   const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
@@ -122,8 +126,8 @@ const RevenueChart: React.FC<RevenueChartProps> = ({
       {/* Chart container */}
       <ResponsiveContainer width="100%" height={500}>
         {/* <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}> */}
-        <LineChart data={analyticsRevenueData ? analyticsRevenueData : data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-        {/* <LineChart data={analyticsRevenueData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}> */}
+        {/* <LineChart data={analyticsRevenueData ? analyticsRevenueData : data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}> */}
+        <LineChart data={analyticsRevenueData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
           <CartesianGrid stroke="#333" strokeDasharray="3 3" />
           <XAxis
             dataKey="month"
