@@ -81,7 +81,7 @@ const ReportsOverview: React.FC<AnalyticsInfoReportsProps> = ({
       </div>
 
       {/* Users by Device */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="flex flex-col items-center justify-center bg-boxColor p-20 rounded-3xl shadow-md">
             <div className='w-[450px] h-[450px]'>
                 <Doughnut
@@ -147,7 +147,7 @@ const ReportsOverview: React.FC<AnalyticsInfoReportsProps> = ({
       {/* Users by Country */}
       <div className="bg-boxColor p-10 rounded-3xl shadow-md mt-4">
         {/* Header */}
-        <div className="flex gap-4 flex-2 w-[80%]">
+        <div className="flex flex-col lg:flex-row gap-4 flex-2 w-[80%]">
             {/* Users by Country List */}
             <div className="flex flex-col flex-1">
             <div className="flex flex-col justify-start items-start mb-4">

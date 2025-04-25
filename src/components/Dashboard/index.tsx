@@ -117,7 +117,7 @@ const DashboardComponent = () => {
         <Header />
 
         {/* Metrics Cards */}
-        <div className="grid grid-cols-4 gap-4 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           <MetricsCard title="Live Visits" ic={"ic:baseline-remove-red-eye"} value={analyticsInfo?.live_visits?.toString() ?? "0"} change="+12%" />
           <MetricsCard title="Monthly Users" ic={"mdi:account"} value={analyticsInfo ? formatNumber(analyticsInfo.monthly_users) : "0"} change="-2.5%" />
           <MetricsCard title="New Sign-ups" ic={"mdi:plus-circle"} value={analyticsInfo?.new_sign_ups?.toString() ?? "0"} change="+15%" />
@@ -126,10 +126,6 @@ const DashboardComponent = () => {
 
         {/* Revenue Chart */}
         <div className="bg-boxColor p-4 rounded shadow-md mt-4">
-          {/* <RevenueChart 
-            analyticsTotalRevenue={analyticsInfo ? formatNumber(analyticsInfo.total_revenue) : "0"} 
-            analyticsRevenueData={analyticsInfo ? analyticsInfo.revenue_data : [{_id: '1', month: 'Jan', revenue: '1000'}]}
-          /> */}
            {analyticsInfo ? (
           <RevenueChart
             analyticsTotalRevenue={analyticsInfo ? formatNumber(analyticsInfo.total_revenue) : "0"}
