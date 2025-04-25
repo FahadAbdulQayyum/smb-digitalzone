@@ -13,6 +13,17 @@ interface IUsersByDevice {
   phone_app_users: number | string;
 }
 
+export interface IUsersByDeviceData {
+  labels: string[],
+    datasets: [
+      {
+        data: number[],
+        backgroundColor: string[],
+        hoverOffset: number,
+      },
+    ],
+}
+
 export interface IRecentSubscriber {
   date: Date;
   name: string;
@@ -37,6 +48,8 @@ interface AnalyticsType {
     revenue_data: IRevenueData[];
     recent_subscribers: IRecentSubscriber[];
     users_by_device: IUsersByDevice;
+    // users_by_device_data: IUsersByDeviceData[];
+    users_by_device_data: IUsersByDeviceData;
     // users_by_country: IUsersByCountry;
     users_by_country_count: number;
     users_by_device_count: number;
@@ -128,14 +141,28 @@ const DashboardComponent = () => {
         </div>
 
         {/* Reports Overview */}
-        <ReportsOverview 
+        {analyticsInfo ? <ReportsOverview 
           analyticsInfoDeviceCount={analyticsInfo ? analyticsInfo.users_by_device_count.toLocaleString() : "0"} 
           analyticsInfoCountryCount={analyticsInfo ? formatNumber(analyticsInfo.users_by_country_count) : "0"} 
           analyticsInfoDesktopUserCount={analyticsInfo ? numberWithCommas(+analyticsInfo.users_by_device.desktop_users) : "0"} 
           analyticsInfoPhoneUserCount={analyticsInfo ? numberWithCommas(+analyticsInfo.users_by_device.phone_app_users) : "0"} 
           analyticsInfoLaptopUserCount={analyticsInfo ? numberWithCommas(+analyticsInfo.users_by_device.laptop_users) : "0"} 
           analyticsRecentSubscriber={analyticsInfo?.recent_subscribers}
+          analyticsDeviceData={analyticsInfo ? [analyticsInfo?.users_by_device_data] : 
+            [{
+              labels: ['Fake Desktop users', 'Phone app users', 'Laptop users'],
+              datasets: [
+                {
+                  data: [4100, 643, 1000, 400],
+                  backgroundColor: ['#CB3CFF', '#00C2FF', '#0038FF', '#343B4F40'],
+                  hoverOffset: 4,
+                },
+              ],
+            }]
+          }
         />
+      : <p>Loading...</p>
+      }
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import PercentageAnalytics from '../PercentageAnalytics';
 import Button from '@/app/Screen/Button';
 import { numberWithCommas } from '@/utils/numberWithComma';
-import { IRecentSubscriber } from '../Dashboard';
+import { IRecentSubscriber, IUsersByDeviceData } from '../Dashboard';
 import { formatNumber } from '@/utils/formatter';
 
 interface AnalyticsInfoReportsProps {
@@ -15,6 +15,7 @@ interface AnalyticsInfoReportsProps {
   analyticsInfoPhoneUserCount?: string | number; // Allow string, number, or undefined
   analyticsInfoLaptopUserCount?: string | number; // Allow string, number, or undefined
   analyticsRecentSubscriber?: IRecentSubscriber[]; // Allow string, number, or undefined
+  analyticsDeviceData?: IUsersByDeviceData[]
 }
 
 // const ReportsOverview = () => {
@@ -24,20 +25,28 @@ const ReportsOverview: React.FC<AnalyticsInfoReportsProps> = ({
   analyticsInfoDesktopUserCount, 
   analyticsInfoPhoneUserCount, 
   analyticsInfoLaptopUserCount,
-  analyticsRecentSubscriber
+  analyticsRecentSubscriber,
+  analyticsDeviceData
 }) => {
   // Doughnut Chart Data
   const usersByDeviceData = {
-    labels: ['Desktop users', 'Phone app users', 'Laptop users'],
-    datasets: [
-      {
-        data: [4100, 643, 1000, 400],
-        backgroundColor: ['#CB3CFF', '#00C2FF', '#0038FF', '#343B4F40'],
-        hoverOffset: 4,
-      },
-    ],
+    labels: analyticsDeviceData ? analyticsDeviceData[0].labels : ["Dummy", "Pagal", "Tiwar", "Kuja", "letSee"],
+    // datasets: [
+    //   {
+    //     data: [4100, 643, 1000, 400],
+    //     backgroundColor: ['#CB3CFF', '#00C2FF', '#0038FF', '#343B4F40'],
+    //     hoverOffset: 4,
+    //   },
+    // ],
+    datasets: analyticsDeviceData ? analyticsDeviceData[0].datasets : 
+    [
+        {
+          data: [4100, 643, 1000, 400],
+          backgroundColor: ['#CB3CFF', '#00C2FF', '#0038FF', '#343B4F40'],
+          hoverOffset: 4,
+        },
+      ],
   };
-  
 
   // Users by Country Data
   const usersByCountryData = [
@@ -76,7 +85,7 @@ const ReportsOverview: React.FC<AnalyticsInfoReportsProps> = ({
         <div className="flex flex-col items-center justify-center bg-boxColor p-20 rounded-3xl shadow-md">
             <div className='w-[450px] h-[450px]'>
                 <Doughnut
-                    data={usersByDeviceData}
+                    data={analyticsDeviceData ? analyticsDeviceData[0] : usersByDeviceData}
                     options={{
                     plugins: {
                         legend: {
