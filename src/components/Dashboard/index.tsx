@@ -20,6 +20,12 @@ export interface IRecentSubscriber {
   amount: number;
 }
 
+export interface IRevenueData {
+  month: string;
+  // revenue: number;
+  revenue: string;
+}
+
 interface AnalyticsType {
     user_id: string;
     live_visits: number;
@@ -27,6 +33,7 @@ interface AnalyticsType {
     new_sign_ups: number;
     subscriptions: number;
     total_revenue: number;
+    revenue_data: IRevenueData[];
     recent_subscribers: IRecentSubscriber[];
     users_by_device: IUsersByDevice;
     // users_by_country: IUsersByCountry;
@@ -66,6 +73,7 @@ const DashboardComponent = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log('...Analytics data:...', data); // Log the fetched analytics data
         setAnalyticsInfo(data); // Store analytics info in state
       } catch (error) {
         console.error('Error fetching analytics:', error);
@@ -97,7 +105,10 @@ const DashboardComponent = () => {
 
         {/* Revenue Chart */}
         <div className="bg-boxColor p-4 rounded shadow-md mt-4">
-          <RevenueChart analyticsTotalRevenue={analyticsInfo ? formatNumber(analyticsInfo.total_revenue) : "0"} />
+          <RevenueChart 
+            analyticsTotalRevenue={analyticsInfo ? formatNumber(analyticsInfo.total_revenue) : "0"} 
+            analyticsRevenueData={analyticsInfo ? analyticsInfo.revenue_data : [{month: 'Jan', revenue: '1000'}]}
+          />
         </div>
 
         {/* Reports Overview */}

@@ -20,6 +20,18 @@ const recentSubscriberSchema = new Schema({
   },
 });
 
+// Define the RecentSubscriber sub-schema
+const IRevenueDataSchema = new Schema({
+  month: {
+    type: String,
+    required: true,
+  },
+  revenue: {
+    type: String,
+    required: true,
+  },
+});
+
 // Define the UsersByDevice sub-schema
 const usersByDeviceSchema = new Schema({
   desktop_users: {
@@ -90,6 +102,10 @@ const analyticsSchema = new Schema({
     type: [recentSubscriberSchema],
     required: true,
   },
+  revenue_data: {
+    type: [IRevenueDataSchema],
+    required: true,
+  },
   users_by_device: {
     type: usersByDeviceSchema,
     required: true,
@@ -112,7 +128,6 @@ const analyticsSchema = new Schema({
 });
 
 // Create or retrieve the model
-// const Analytics = models.Analytics || mongoose.model('Analytic', analyticsSchema);
 const Analytics = mongoose.models.Analytic || model("Analytic", analyticsSchema);
 
 

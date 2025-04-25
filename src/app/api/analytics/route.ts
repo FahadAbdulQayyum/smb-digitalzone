@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import User from '@/utils/models/User';
 import Analytics from '@/utils/models/Analytic';
-import { connectToDatabase } from '../auth/login/route';
+import { connectToDatabase } from '@/utils/db';
 
 // Handle GET requests
 export async function POST(request: Request) {

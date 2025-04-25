@@ -11,6 +11,7 @@ import {
   TooltipProps,
 } from 'recharts';
 import PercentageAnalytics from '../PercentageAnalytics';
+import { IRevenueData } from '../Dashboard';
 
 // Define the type for the data points
 type RevenueData = {
@@ -20,6 +21,7 @@ type RevenueData = {
 
 interface RevenueChartProps {
   analyticsTotalRevenue?: string | number; // Allow string, number, or undefined
+  analyticsRevenueData?: IRevenueData[]; // Array of revenue data points
 }
 
 // Define the type for the custom tooltip props
@@ -28,7 +30,10 @@ type CustomTooltipProps = TooltipProps<number, string> & {
   payload?: Array<{ payload: RevenueData }>; // Payload containing the data point
 };
 
-const RevenueChart: React.FC<RevenueChartProps> = ({analyticsTotalRevenue = "27.9K"}) => {
+const RevenueChart: React.FC<RevenueChartProps> = ({
+  analyticsTotalRevenue = "27.9K",
+  analyticsRevenueData
+}) => {
   // Data with explicit type annotation
   const data: RevenueData[] = [
     { month: 'Jan', revenue: 0 },
@@ -116,7 +121,9 @@ const RevenueChart: React.FC<RevenueChartProps> = ({analyticsTotalRevenue = "27.
 
       {/* Chart container */}
       <ResponsiveContainer width="100%" height={500}>
-        <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+        {/* <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}> */}
+        <LineChart data={analyticsRevenueData ? analyticsRevenueData : data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+        {/* <LineChart data={analyticsRevenueData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}> */}
           <CartesianGrid stroke="#333" strokeDasharray="3 3" />
           <XAxis
             dataKey="month"

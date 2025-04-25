@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import mongoose from 'mongoose';
 import User from '@/utils/models/User';
-import { connectToDatabase } from '../login/route';
+import { connectToDatabase } from '@/utils/db';
 
 // Handle POST requests
 export async function POST(request: Request) {

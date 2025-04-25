@@ -26,6 +26,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       if (!response.ok) {
         // Handle error response
+        alert(data.message || 'Login failed');
         setError(data.message || 'Login failed');
         return;
       }
