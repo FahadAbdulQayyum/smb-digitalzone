@@ -6,6 +6,7 @@ import ReportsOverview from '../ReportsOverview';
 import { useEffect, useState } from 'react';
 import { formatNumber } from '@/utils/formatter';
 import { numberWithCommas } from '@/utils/numberWithComma';
+import Loader from '../Loader';
 
 interface IUsersByDevice {
   desktop_users: number | string;
@@ -157,7 +158,7 @@ const DashboardComponent = () => {
             }]
           }
         />
-      : <p>Loading...</p>
+      : <Loader />
       }
       </div>
     </div>
