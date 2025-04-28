@@ -15,8 +15,36 @@ export default function LoginComponent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoader(true);
-    setTimeout(() => setLoader(false), 2000); // Simulate loading for 2 seconds
+
+    try {
+      // Send login request to the API
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      setLoader(true); // Show loader while waiting for response
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle error response
+        alert(data.message || 'Login failed');
+        setError(data.message || 'Login failed');
+        return;
+      }
+
+      // Save the token in local storage or cookies
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('userName', data.userName);
+
+      // Redirect to the dashboard
+      router.push('/dashboard');
+      setLoader(false); // Hide loader after redirection
+    } catch (error) {
+      console.error(error);
+      setError('Something went wrong. Please try again.');
+    }
   };
 
   return (
