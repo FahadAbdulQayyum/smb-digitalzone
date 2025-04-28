@@ -3,13 +3,16 @@ import LogoComponent from '../Logo';
 import Button from '@/app/Screen/Button';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useRouter } from "next/navigation";
+import Loader from '../Loader';
 
 const Sidebar = () => {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
+  const [loading, setLoader] = useState(false); // State to manage loading state
 
   const handleLogout = async () => {
     try {
+      setLoader(true)
       // Call the logout API route
       const response = await fetch('/api/auth/logout', {
         method: 'POST',
@@ -22,6 +25,7 @@ const Sidebar = () => {
 
         // Redirect to the sign-in page
         router.push('/login');
+        setLoader(false)
       } else {
         alert('Failed to log out. Please try again.');
       }
@@ -31,8 +35,8 @@ const Sidebar = () => {
     }
   };
 
-  return (
-    <>
+  return <>
+    {!loading ? <span>
       {/* Hamburger Icon for Small Screens */}
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button
@@ -119,8 +123,8 @@ const Sidebar = () => {
           ></div>
         )}
       </div>
+    </span>: <Loader />}
     </>
-  );
 };
 
 export default Sidebar;
