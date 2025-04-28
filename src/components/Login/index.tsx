@@ -15,7 +15,7 @@ export default function LoginComponent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setLoader(true); // Show loader while waiting for response
     try {
       // Send login request to the API
       const response = await fetch('/api/auth/login', {
@@ -23,7 +23,6 @@ export default function LoginComponent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      setLoader(true); // Show loader while waiting for response
       const data = await response.json();
 
       if (!response.ok) {
