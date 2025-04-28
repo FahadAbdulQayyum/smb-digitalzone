@@ -54,7 +54,7 @@ export default function SignupComponent() {
             placeholder="example@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-boxColor text-white"
+            className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent text-white"
           />
         </div>
 
@@ -68,7 +68,7 @@ export default function SignupComponent() {
             placeholder="Enter your username"
             value={username}
             onChange={(e) => setUserName(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-boxColor text-white"
+            className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent text-white"
           />
         </div>
 
@@ -83,7 +83,7 @@ export default function SignupComponent() {
             placeholder="At least 6 characters"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-boxColor text-white"
+            className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent text-white"
           />
         </div>
         <Button style='bg-colorful' title='Sign Up' ic='' lic='' wide={true} cntr={true}/>
