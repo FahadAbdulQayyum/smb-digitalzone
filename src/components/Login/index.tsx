@@ -47,7 +47,7 @@ export default function LoginComponent() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-gray-900 to-indigo-900">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-gray-900 to-indigo-900 px-3 sm:px-0">
       {/* Form always rendered */}
       <div className="text-center text-white">
         <LogoComponent size={32} />

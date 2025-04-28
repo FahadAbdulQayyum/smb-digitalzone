@@ -32,7 +32,7 @@ export default function SignupComponent() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900 px-3 sm:px-0">
       <div className="text-center text-white">
         <LogoComponent size={32}/>
       </div>
