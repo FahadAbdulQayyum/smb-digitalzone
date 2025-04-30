@@ -8,6 +8,11 @@ import { formatNumber } from '@/utils/formatter';
 import { numberWithCommas } from '@/utils/numberWithComma';
 import Loader from '../Loader';
 
+interface BlogPosts {
+  title: string;
+  content: string;
+}
+
 // Interfaces and Types
 interface IUsersByDevice {
   desktop_users: number | string;
@@ -61,6 +66,8 @@ const DashboardComponent = () => {
   const [isUsernameFetched, setIsUsernameFetched] = useState(false);
   const [analyticsInfo, setAnalyticsInfo] = useState<AnalyticsType | null>(null);
   const [selectedTab, setSelectedTab] = useState("dashboard");
+  // const [blogPosts, setBlogPosts] = useState<BlogPosts | null>(null)
+  const [blogPosts, setBlogPosts] = useState<BlogPosts[]>([])
 
   // Fetch username from localStorage
   useEffect(() => {
@@ -98,6 +105,7 @@ const DashboardComponent = () => {
 
         console.log('...Analytics data:...', data);
         setAnalyticsInfo(data);
+        setBlogPosts(data.blog_posts)
       } catch (error) {
         console.error('Error fetching analytics:', error);
       }
@@ -108,7 +116,28 @@ const DashboardComponent = () => {
     }
   }, [username, isUsernameFetched]);
 
+  // const blogPosts = data&& data.blog_posts
+  
+  // const blogPosts = [
+  //   {
+  //     title: "Blog Post Title 1",
+  //     content:
+  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
+  //   },
+  //   {
+  //     title: "Blog Post Title 2",
+  //     content:
+  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  //   },
+  //   {
+  //     title: "Blog Post Title 3",
+  //     content:
+  //       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+  //   },
+  // ];
+
   // Render content based on the selected tab
+
   const renderContent = () => {
     switch (selectedTab) {
       case "dashboard":
@@ -172,22 +201,30 @@ const DashboardComponent = () => {
         );
 
       case "notifications":
-        return <p>Notifications Content</p>;
+        return <p className='text-white'>Notifications Content</p>;
 
       case "users":
-        return <p>Users Content</p>;
+        return <p className='text-white'>Users Content</p>;
 
       case "posts":
-        return <p>Flagged Posts Content</p>;
+        return <p className='text-white'>Flagged Posts Content</p>;
 
       case "ads":
-        return <p>Advertisements Content</p>;
+        return <p className='text-white'>Advertisements Content</p>;
 
       case "blogs":
-        return <p>Blogs Content</p>;
+        // return <p className='text-white'>Blogs Content</p>;
+        return <div className="space-y-4">
+        {blogPosts && blogPosts.map((post, index) => (
+          <div key={index} className="bg-boxColor p-4 rounded shadow-md">
+            <h3 className="text-lg font-semibold text-gray-200">{post.title}</h3>
+            <p className="text-sm text-gray-400 mt-2">{post.content}</p>
+          </div>
+        ))}
+      </div>
 
       default:
-        return <p>No content available</p>;
+        return <p className='text-white'>No content available</p>;
     }
   };
 
