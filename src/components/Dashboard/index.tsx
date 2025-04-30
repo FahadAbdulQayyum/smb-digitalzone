@@ -66,7 +66,6 @@ const DashboardComponent = () => {
   const [isUsernameFetched, setIsUsernameFetched] = useState(false);
   const [analyticsInfo, setAnalyticsInfo] = useState<AnalyticsType | null>(null);
   const [selectedTab, setSelectedTab] = useState("dashboard");
-  // const [blogPosts, setBlogPosts] = useState<BlogPosts | null>(null)
   const [blogPosts, setBlogPosts] = useState<BlogPosts[]>([])
 
   // Fetch username from localStorage
@@ -116,28 +115,8 @@ const DashboardComponent = () => {
     }
   }, [username, isUsernameFetched]);
 
-  // const blogPosts = data&& data.blog_posts
-  
-  // const blogPosts = [
-  //   {
-  //     title: "Blog Post Title 1",
-  //     content:
-  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-  //   },
-  //   {
-  //     title: "Blog Post Title 2",
-  //     content:
-  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     title: "Blog Post Title 3",
-  //     content:
-  //       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
-  //   },
-  // ];
 
   // Render content based on the selected tab
-
   const renderContent = () => {
     switch (selectedTab) {
       case "dashboard":
@@ -179,7 +158,7 @@ const DashboardComponent = () => {
                   analyticsRevenueData={analyticsInfo!.revenue_data}
                 />
               ) : (
-                <p>Loading...</p>
+                <Loader />
               )}
             </div>
 
