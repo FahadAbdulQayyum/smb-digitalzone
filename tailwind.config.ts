@@ -1,7 +1,8 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
+    darkMode: ["class"],
+    content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,43 +15,84 @@ const config: Config = {
     'bg-pink-400',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-border': 'linear-gradient(to right, #ff7e5f, #feb47b)',
-      },
-      screens: {
-        // Define custom breakpoints here
-        'xs': '375px',   // Extra small devices (e.g., iPhone SE)
-        'sm': '640px',   // Small devices (e.g., phones)
-        'md': '768px',   // Medium devices (e.g., tablets)
-        'lg': '1024px',  // Large devices (e.g., laptops)
-        'xl': '1280px',  // Extra large devices (e.g., desktops)
-        '2xl': '1536px', // 2x large devices (e.g., large monitors)
-        '3xl': '1920px', // 3x large devices (e.g., ultra-wide monitors)
-      },
-      colors: {
-        background: "#F4F4F4",
-        boxColor: "#19161C",
-        grayColor: "#7E89AC",
-        reportColor: "#19161C",
-        purpleColor: "#CB3CFF",
-        blueColor: "#0038FF",
-        tealColor: "#00C2FF",
-        greenColor: "#14CA74",
-        greenColorT: "#05C16833",
-        redColor: "#FF5A65",
-        redColorT: "#FF5A6533",
-        textClr: "#737A91",
-        textClr2: "#585D6E",
-        textClr3: "#737A91",
-        primary: "#FFFFFF",
-        foreground: "#0154AA",
-      },
-      padding: {
-        standardPadding: '2rem',
-      },
-    },
+  	extend: {
+  		backgroundImage: {
+  			'gradient-border': 'linear-gradient(to right, #ff7e5f, #feb47b)'
+  		},
+  		screens: {
+  			xs: '375px',
+  			sm: '640px',
+  			md: '768px',
+  			lg: '1024px',
+  			xl: '1280px',
+  			'2xl': '1536px',
+  			'3xl': '1920px'
+  		},
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			boxColor: '#19161C',
+  			grayColor: '#7E89AC',
+  			reportColor: '#19161C',
+  			purpleColor: '#CB3CFF',
+  			blueColor: '#0038FF',
+  			tealColor: '#00C2FF',
+  			greenColor: '#14CA74',
+  			greenColorT: '#05C16833',
+  			redColor: '#FF5A65',
+  			redColorT: '#FF5A6533',
+  			textClr: '#737A91',
+  			textClr2: '#585D6E',
+  			textClr3: '#737A91',
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		padding: {
+  			standardPadding: '2rem'
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
