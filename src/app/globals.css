@@ -48,6 +48,7 @@ h1 {
   background: linear-gradient(60deg, #b0219d 0%, #933FFE 2%, #4c9cfc 70%, #4c9cfc 60%);
   border-radius: 8px;
 }
+
 .remove-mrgn {
   margin: 0 0 !important;
 }

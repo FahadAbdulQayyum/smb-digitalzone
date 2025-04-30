@@ -17,7 +17,7 @@ const config: Config = {
   theme: {
   	extend: {
   		backgroundImage: {
-  			'gradient-border': 'linear-gradient(to right, #ff7e5f, #feb47b)'
+  			'gradient-border': 'linear-gradient(to right, #ff7e5f, #feb47b)',
   		},
   		screens: {
   			xs: '375px',
