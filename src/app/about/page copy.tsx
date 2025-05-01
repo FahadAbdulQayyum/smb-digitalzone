@@ -133,106 +133,7 @@ const App: React.FC = () => {
     },
     {
       tag: "reach more customers with our smart SEO.",
-      title: "SEO",
-      img: "/images/seo.svg",
-    },
-    {
-        tag: "grow your traffic with our",
-        title: "expert SEO services.",
-    },
-    {
-        tag: "reach more customers with our smart SEO.",
-        title: "Content Marketing",
-        img: "/images/content.svg",
-    },
-    {
-        tag: "reach more customers with our smart SEO.",
-        title: "Content Marketing",
-        img: "/images/content.svg",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "Social Media Marketing",
-      img: "/images/social.svg",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "Social Media Marketing",
-      img: "/images/social.svg",
-    },
-    {
-      tag: "reach more customers with our",
-      title: "smart SEO",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "SEO",
-      img: "/images/seo.svg",
-    },
-    {
-        tag: "grow your traffic with our",
-        title: "expert SEO services.",
-    },
-    {
-        tag: "reach more customers with our smart SEO.",
-        title: "Content Marketing",
-        img: "/images/content.svg",
-    },
-    {
-        tag: "reach more customers with our smart SEO.",
-        title: "Content Marketing",
-        img: "/images/content.svg",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "Social Media Marketing",
-      img: "/images/social.svg",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "Social Media Marketing",
-      img: "/images/social.svg",
-    },
-    {
-      tag: "reach more customers with our",
-      title: "smart SEO",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "SEO",
-      img: "/images/seo.svg",
-    },
-    {
-        tag: "grow your traffic with our",
-        title: "expert SEO services.",
-    },
-    {
-        tag: "reach more customers with our smart SEO.",
-        title: "Content Marketing",
-        img: "/images/content.svg",
-    },
-    {
-        tag: "reach more customers with our smart SEO.",
-        title: "Content Marketing",
-        img: "/images/content.svg",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "Social Media Marketing",
-      img: "/images/social.svg",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "Social Media Marketing",
-      img: "/images/social.svg",
-    },
-    {
-      tag: "reach more customers with our",
-      title: "smart SEO",
-    },
-    {
-      tag: "reach more customers with our smart SEO.",
-      title: "SEO",
+      title: "SEOO",
       img: "/images/seo.svg",
     },
     {
@@ -254,39 +155,21 @@ const App: React.FC = () => {
   return (
     <div className="slider-section">
       <div className="wheel" ref={wheelRef}>
-      {cards.map((card, index) => (
-            <div
-                className="wheel__card"
-                key={index}
-                ref={(el) => {
-                imagesRef.current[index] = el; // Assign the element to the array
-                }}
-            >
-                {card.img ? (
-                <span className="relative block w-full h-full ">
-                    {/* Image as background */}
-                    <img
-                    src={card.img}
-                    alt={`Card ${index}`}
-                    className="absolute top-0 left-0 w-full h-full object-cover !z-0 shadow-md"
-                    />
-                    {/* Title positioned at bottom left */}
-                    <p className="absolute bottom-0 left-2 text-white text-sm p-1 !z-[1000px] bg-transparent backdrop-blur-lg overflow-hidden">
-                    {card.title}
-                    </p>
-                </span>
-                ) : (
-                    <div className="w-40 h-52 bg-gray-800 rounded-lg shadow-md shadow-black-200">
-                        <span className="flex text-start p-2 py-6">
-                            <p className="text-gray-400">{card.tag}
-                            <span className="text-white">{' ' + card.title}</span>
-                            </p>
-                        </span>
-
-                    </div>
-                )}
+        {cards.map((card, index) => (
+          <div
+            className="wheel__card"
+            key={index}
+            ref={(el) => {
+              imagesRef.current[index] = el; // Assign the element to the array
+            }}
+          >
+            {card.img ? <img src={card.img} alt={`Card ${index}`} /> : ""}
+            <div className="card-content bg-gray-800 py-16 px-2 rounded-lg shadow-md shadow-black-200">
+              <h2 className="text-white">{card.title}</h2>
+              <p>{card.tag}</p>
             </div>
-            ))}
+          </div>
+        ))}
       </div>
       <div className="flex justify-center items-center h-screen">
         <Carousel
