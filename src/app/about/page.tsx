@@ -45,22 +45,22 @@ const App: React.FC = () => {
 
     // Scroll-based rotation logic
     const handleScroll = (event: WheelEvent) => {
-      const wheel = wheelRef.current;
-      if (!wheel) return;
-
-      // Get the current rotation of the wheel
-      const currentRotation = gsap.getProperty(wheel, "rotation") || 0;
-
-      // Update rotation based on scroll direction
-      const newRotation = currentRotation - event.deltaY * 0.5; // Adjust sensitivity with multiplier
-
-      // Animate the rotation smoothly
-      gsap.to(wheel, {
-        rotation: newRotation,
-        duration: 0.5, // Smooth animation duration
-        ease: "power2.out",
-      });
-    };
+        const wheel = wheelRef.current;
+        if (!wheel) return;
+      
+        // Safely retrieve the current rotation and ensure it's a number
+        const currentRotation = parseFloat(gsap.getProperty(wheel, "rotation") as string) || 0;
+      
+        // Update rotation based on scroll direction
+        const newRotation = currentRotation - event.deltaY * 0.5; // Adjust sensitivity with multiplier
+      
+        // Animate the rotation smoothly
+        gsap.to(wheel, {
+          rotation: newRotation,
+          duration: 0.5, // Smooth animation duration
+          ease: "power2.out",
+        });
+      };
 
     // Add scroll event listener
     const wheel = wheelRef.current;
