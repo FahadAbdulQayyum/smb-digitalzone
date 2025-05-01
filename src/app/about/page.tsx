@@ -78,34 +78,29 @@ const App: React.FC = () => {
   interface carouselProps {
     title: string;
     description: string;
+    description1: string;
+    description2: string;
   }
   
   const carouselContent: carouselProps[] = [
     {
-      title: "Card 1",
-      description: "This is the description for Card 1",
+      title: "Message from the Captain of the Starship 1",
+      description: "Led by our visionary founder, Simo Berrada, with over 25 years of cosmic experience in the UAE market, we're fueled by a passion for innovation and driven by a singular mission: to help businesses like yours ascend to cosmic greatness.",
+      description1: "Thank you for considering SMB DigitalZone for your digital odyssey. We're thrilled to embark on this cosmic journey with you and guide your business toward the stars.",
+      description2: "Contact us today to learn more about our services and how we can help you reach your objectives. Unlock the full potential of your online presence with SMB DigitalZone, your cosmic companion in the digital universe.",
     },
     {
-      title: "Card 2",
-      description: "This is the description for Card 2",
+      title: "Message from the Captain of the Starship 2",
+      description: "Led by our visionary founder, Simo Berrada, with over 25 years of cosmic experience in the UAE market, we're fueled by a passion for innovation and driven by a singular mission: to help businesses like yours ascend to cosmic greatness.",
+      description1: "Thank you for considering SMB DigitalZone for your digital odyssey. We're thrilled to embark on this cosmic journey with you and guide your business toward the stars.",
+      description2: "Contact us today to learn more about our services and how we can help you reach your objectives. Unlock the full potential of your online presence with SMB DigitalZone, your cosmic companion in the digital universe.",
     },
     {
-      title: "Card 3",
-      description: "This is the description for Card 3",
+      title: "Message from the Captain of the Starship 3",
+      description: "Led by our visionary founder, Simo Berrada, with over 25 years of cosmic experience in the UAE market, we're fueled by a passion for innovation and driven by a singular mission: to help businesses like yours ascend to cosmic greatness.",
+      description1: "Thank you for considering SMB DigitalZone for your digital odyssey. We're thrilled to embark on this cosmic journey with you and guide your business toward the stars.",
+      description2: "Contact us today to learn more about our services and how we can help you reach your objectives. Unlock the full potential of your online presence with SMB DigitalZone, your cosmic companion in the digital universe.",
     },
-    {
-      title: "Card 4",
-      description: "This is the description for Card 4",
-    },
-    {
-      title: "Card 5",
-      description: "This is the description for Card 5",
-    },
-    {
-      title: "Card 6",
-      description: "This is the description for Card 6",
-
-    }
   ]
 
 interface cardString {
@@ -299,7 +294,8 @@ interface cardString {
           align: "start",
           loop: true, // Enable infinite looping
         }}
-        className="w-full max-w-sm"
+        // className="w-full max-w-sm"
+        className="w-full max-w-lg"
       >
         <CarouselContent>
           {/* {Array.from({ length: 6 }).map((_, index) => ( */}
@@ -307,12 +303,16 @@ interface cardString {
             // <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             // <CarouselItem key={index} className="md:basis-1/6 lg:basis-1/2">
             <CarouselItem key={index} >
-              <div className="p-1">
+              <div className="w-full">
                 <Card>
-                  <CardContent className="flex items-center justify-center bg-boxColor text-white py-24">
-                    <span className="text-3xl font-semibold">
-                      <h2 className="text-3xl">{_.title}</h2>
-                      <p className="text-xl">{_.description}</p>
+                  <CardContent className="flex items-center justify-center text-white py-24 w-full">
+                    <span className="text-center">
+                      <h2 className="text-sm uppercase pb-5 w-full font-semibold">{_.title}</h2>
+                      <span className="space-y-2">
+                        <p className="text-xs text-center font-extralight">{_.description}</p>
+                        <p className="text-xs text-center font-extralight">{_.description1}</p>
+                        <p className="text-xs text-center font-extralight">{_.description2}</p>
+                      </span>
                     </span>
                   </CardContent>
                 </Card>
