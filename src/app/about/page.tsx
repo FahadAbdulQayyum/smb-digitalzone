@@ -271,7 +271,7 @@ const App: React.FC = () => {
             }}
           >
             {card.img ? <img src={card.img} alt={`Card ${index}`} /> : ""}
-            <div className="card-content bg-gray-800 py-16 px-2 rounded-lg shadow-md shadow-white">
+            <div className="card-content bg-gray-800 py-16 px-2 rounded-lg shadow-md shadow-black-200">
               <h2 className="text-white">{card.title}</h2>
               <p>{card.tag}</p>
             </div>
