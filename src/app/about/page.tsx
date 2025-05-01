@@ -256,16 +256,6 @@ interface cardString {
     "https://assets.codepen.io/756881/amys-20.jpg",
     "https://assets.codepen.io/756881/amys-21.jpg",
     "https://assets.codepen.io/756881/amys-22.jpg",
-    // "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-    // "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9",
-    // "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    // "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-    // "https://images.unsplash.com/photo-1538370965046-79c0d6907d47",
-    // "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-    // "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9",
-    // "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    // "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-    // "https://images.unsplash.com/photo-1538370965046-79c0d6907d47"
   ];
 
   return (
@@ -287,21 +277,16 @@ interface cardString {
           </div>
         ))}
       </div>
-      {/* <div className="absolute top-0 left-0 right-0 flex justify-between items-center p-4"> */}
       <div className="flex justify-center items-center h-screen">
         <Carousel
         opts={{
           align: "start",
           loop: true, // Enable infinite looping
         }}
-        // className="w-full max-w-sm"
         className="w-full max-w-lg"
       >
         <CarouselContent>
-          {/* {Array.from({ length: 6 }).map((_, index) => ( */}
           {carouselContent.map((_, index) => (
-            // <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            // <CarouselItem key={index} className="md:basis-1/6 lg:basis-1/2">
             <CarouselItem key={index} >
               <div className="w-full">
                 <Card>
