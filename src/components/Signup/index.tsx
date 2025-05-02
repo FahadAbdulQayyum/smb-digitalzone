@@ -117,10 +117,10 @@ export default function SignupComponent() {
             className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent text-white"
           />
         </div>
-        !loader ? 
-        <Button style="bg-colorful" title="Sign In" ic="" lic="" wide={true} cntr={true} />
+        {!loader ? 
+        <Button style="bg-colorful" title="Sign Up" ic="" lic="" wide={true} cntr={true} />
         :
-        <Button style="bg-colorful" title="" ic="" lic="" wide={true} cntr={true} loader={true} />
+        <Button style="bg-colorful" title="" ic="" lic="" wide={true} cntr={true} loader={true} />}
       </form>
     </div>
   );
