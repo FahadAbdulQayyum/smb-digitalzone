@@ -5,6 +5,13 @@ import { useRouter } from 'next/navigation';
 import LogoComponent from '../Logo';
 import Button from '@/app/Screen/Button';
 import Loader from '../Loader';
+import { toast } from '@/hooks/use-toast';
+
+interface ToastInfoProps {
+  title: string;
+  description: string;
+  duration?: number
+}
 
 export default function LoginComponent() {
   const [email, setEmail] = useState('');
@@ -17,6 +24,16 @@ export default function LoginComponent() {
     e.preventDefault();
     setLoader(true); // Show loader while waiting for response
     try {
+
+      if(email.length < 5 || password.length < 5){
+        setLoader(false)
+        return toast({
+          title: "Credentials Info",
+          description: "Email or password seems empty or should be greater than 5 characters",
+          duration: 5000,
+        })
+      }
+
       // Send login request to the API
       const response = await fetch('/api/auth/login', {
         method: 'POST',
@@ -27,9 +44,16 @@ export default function LoginComponent() {
 
       if (!response.ok) {
         // Handle error response
-        alert(data.message || 'Login failed');
+        // alert(data.message || 'Login failed');
+        setLoader(false)
         setError(data.message || 'Login failed');
-        return;
+        setEmail("")
+        setPassword("")
+        return toast({
+          title: "Login Failed",
+          description: data.message || "Login Failed",
+          duration: 5000,
+        })
       }
 
       // Save the token in local storage or cookies
@@ -93,6 +117,14 @@ export default function LoginComponent() {
         <button
           type="button" // Changed to button to prevent form submission
           className="mb-2 text-grayColor px-4 py-2 w-full text-end"
+          onClick={() => {
+            console.log('Forgot Password clicked');
+            toast({
+              title: "Scheduled: Catch up",
+              description: "Friday, February 10, 2023 at 5:57 PM",
+              duration: 5000,
+            })
+          }}
         >
           Forgot Password?
         </button>
