@@ -19,6 +19,7 @@ export default function SignupComponent() {
     console.log('Login attempt:', { email, password }); // Log the login attempt
 
     try {
+      setLoader(true)
       if(email.length < 5 || username.length < 5 || password.length < 5){
         setLoader(false)
         return toast({
