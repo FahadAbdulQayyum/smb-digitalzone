@@ -4,31 +4,62 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Use next/navigation for App Router
 import Button from '@/app/Screen/Button';
 import LogoComponent from '../Logo';
+import { toast } from '@/hooks/use-toast';
 
 export default function SignupComponent() {
   const [email, setEmail] = useState('');
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [loader, setLoader] = useState(false);
   const router = useRouter(); // Correct useRouter for App Router
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     console.log('Login attempt:', { email, password }); // Log the login attempt
 
-    const response = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, username }),
-    });
-
-    const data = await response.json();
-    if (response.ok) {
-      alert('Signup successful!');
-      router.push('/login'); // Redirect to login page
-    } else {
-      alert(data.message); // Display error message
+    try {
+      if(email.length < 5 || username.length < 5 || password.length < 5){
+        setLoader(false)
+        return toast({
+          title: "Credentials Info",
+          description: "Username or Email or password seems empty or should be greater than 5 characters",
+          duration: 5000,
+        })
+      }
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, username }),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        router.push('/login'); // Redirect to login page
+        return toast({
+          title: "Signup successful!",
+          description: "Signup successful!",
+          duration: 5000,
+        })
+      } else {
+        setLoader(false)
+        setUserName("")
+        setEmail("")
+        setPassword("")
+        return toast({
+          title: "Login Failed",
+          description: data.message || "Login Failed",
+          duration: 5000,
+        })
+      }
+    } catch (err) {
+      toast({
+        title: "Something went wrong!",
+        description: "Something went wrong!",
+        duration: 5000,
+      })
     }
+
   };
 
   return (
@@ -86,7 +117,10 @@ export default function SignupComponent() {
             className="mt-1 p-2 w-full border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent text-white"
           />
         </div>
-        <Button style='bg-colorful' title='Sign Up' ic='' lic='' wide={true} cntr={true}/>
+        !loader ? 
+        <Button style="bg-colorful" title="Sign In" ic="" lic="" wide={true} cntr={true} />
+        :
+        <Button style="bg-colorful" title="" ic="" lic="" wide={true} cntr={true} loader={true} />
       </form>
     </div>
   );

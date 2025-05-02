@@ -25,7 +25,8 @@ export default function LoginComponent() {
     setLoader(true); // Show loader while waiting for response
     try {
 
-      if(email.length < 5 || password.length < 5){
+      // if(email.length < 5 || password.length < 5){
+      if(email.length < 1 || password.length < 1){
         setLoader(false)
         return toast({
           title: "Credentials Info",
@@ -128,11 +129,16 @@ export default function LoginComponent() {
         >
           Forgot Password?
         </button>
+        {
+        !loader ? 
         <Button style="bg-colorful" title="Sign In" ic="" lic="" wide={true} cntr={true} />
+        :
+        <Button style="bg-colorful" title="" ic="" lic="" wide={true} cntr={true} loader={true} />
+      }
       </form>
 
       {/* Conditionally render Loader */}
-      {loader && <Loader />}
+      {/* {loader && <Loader />} */}
     </div>
   );
 }
