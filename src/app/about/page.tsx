@@ -291,7 +291,7 @@ const App: React.FC = () => {
                     <img
                     src={card.img}
                     alt={`Card ${index}`}
-                    className="absolute top-0 left-0 w-full h-full object-cover !z-0 shadow-md"
+                    className="absolute top-0 left-0 w-full h-full object-cover !z-0 shadow-md rounded-lg"
                     />
                     {/* Title positioned at bottom left */}
                     <p className="absolute bottom-0 left-2 text-white text-sm p-1 !z-[1000px] bg-transparent backdrop-blur-lg overflow-hidden">
