@@ -65,12 +65,44 @@ const App: React.FC = () => {
     const wheel = wheelRef.current;
     wheel?.addEventListener("wheel", handleScroll);
 
-    // Cleanup event listeners on unmount
+    // Auto-rotation logic
+    const autoRotate = () => {
+      const wheel = wheelRef.current;
+      if (!wheel) return;
+
+      // Safely retrieve the current rotation and ensure it's a number
+      const currentRotation = parseFloat(gsap.getProperty(wheel, "rotation") as string) || 0;
+
+      // Increment rotation by a fixed amount (e.g., 10 degrees per second)
+      const newRotation = currentRotation + 10;
+
+      // Animate the rotation smoothly
+      gsap.to(wheel, {
+        rotation: newRotation,
+        duration: 1, // Smooth animation duration
+        ease: "linear",
+      });
+    };
+
+    // Set up auto-rotation interval
+    // const intervalId = setInterval(autoRotate, 1000);
+    const intervalId = setInterval(autoRotate, 2000);
+
+    // Cleanup event listeners and interval on unmount
     return () => {
       window.removeEventListener("resize", setup);
       wheel?.removeEventListener("wheel", handleScroll);
+      clearInterval(intervalId); // Clear the auto-rotation interval
     };
-  }, []);
+    }, []); // Empty dependency array ensures this runs once on mount
+
+
+  //   // Cleanup event listeners on unmount
+  //   return () => {
+  //     window.removeEventListener("resize", setup);
+  //     wheel?.removeEventListener("wheel", handleScroll);
+  //   };
+  // }, []);
 
   interface carouselProps {
     title: string;
