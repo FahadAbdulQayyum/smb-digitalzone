@@ -96,14 +96,6 @@ const App: React.FC = () => {
     };
     }, []); // Empty dependency array ensures this runs once on mount
 
-
-  //   // Cleanup event listeners on unmount
-  //   return () => {
-  //     window.removeEventListener("resize", setup);
-  //     wheel?.removeEventListener("wheel", handleScroll);
-  //   };
-  // }, []);
-
   interface carouselProps {
     title: string;
     description: string;
